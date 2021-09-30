@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  npm:
+    build:
+      context: './npm'
+    container_name: '${PROJECT_NAME}_npm'
+    volumes:
+      - ./src:/src
+    ports:
+      - 8080:8080
+    working_dir: /src
+    entrypoint: ['npm']
+  vue:
+    build:
+      context: './npm'
+    container_name: '${PROJECT_NAME}_vue_cli'
+    volumes:
+      - ./src:/src
+    working_dir: /src
+    entrypoint: ['vue']
+
+    
