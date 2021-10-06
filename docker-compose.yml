@@ -3,6 +3,8 @@ services:
   npm:
     build:
       context: './npm'
+      args: 
+        - FRONTUSER=${FRONT_USER}
     container_name: '${PROJECT_NAME}_npm'
     volumes:
       - ./src:/src
@@ -10,13 +12,19 @@ services:
       - 8080:8080
     working_dir: /src
     entrypoint: ['npm']
+    user: ${FRONT_USER}
   vue:
+    ports:
+      - 8000:8000
     build:
       context: './npm'
+      args: 
+        - FRONTUSER=${FRONT_USER}
     container_name: '${PROJECT_NAME}_vue_cli'
     volumes:
       - ./src:/src
     working_dir: /src
     entrypoint: ['vue']
+    user: ${FRONT_USER}
 
     
