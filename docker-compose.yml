@@ -1,9 +1,10 @@
 version: '3.7'
 services:
   npm:
+    image: '${IMAGE_CONTAINER_PREFIX}_npm'
+    container_name: '${IMAGE_CONTAINER_PREFIX}_npm'
     build:
       context: './npm'
-    container_name: '${PROJECT_NAME}_npm'
     volumes:
       - ./src:/src
     ports:
@@ -11,14 +12,13 @@ services:
     working_dir: /src
     entrypoint: ['npm']
   vue:
-    ports:
-      - 8000:8000
+    image: '${IMAGE_CONTAINER_PREFIX}_vue_cli'
+    container_name: '${IMAGE_CONTAINER_PREFIX}_vue_cli'
     build:
       context: './npm'
-    container_name: '${PROJECT_NAME}_vue_cli'
+    ports:
+      - 8000:8000
     volumes:
       - ./src:/src
     working_dir: /src
     entrypoint: ['vue']
-
-    
