@@ -22,3 +22,11 @@ services:
       - ./src:/src
     working_dir: /src
     entrypoint: ['vue']
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - npm
